@@ -1,8 +1,7 @@
 apiVersion: metering.openshift.io/v1
 kind: Report
 metadata:
-  name: jay-cluster-worker-cpu-capacity
-  namespace: openshift-metering
+  name: cluster-worker-cpu-capacity
 spec:
   query: cluster-worker-cpu-capacity
   schedule:

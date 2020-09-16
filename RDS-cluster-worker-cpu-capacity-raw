@@ -1,0 +1,13 @@
+apiVersion: metering.openshift.io/v1
+kind: ReportDataSource
+metadata:
+  name: cluster-worker-cpu-capacity-raw
+  namespace: openshift-metering
+  ownerReferences:
+    - apiVersion: metering.openshift.io/v1
+      kind: MeteringConfig
+      name: operator-metering
+      uid: 49dc8e2d-4ed1-49a5-a395-1f3dcbc7c4bd
+spec:
+  reportQueryView:
+    queryName: cluster-worker-cpu-capacity-raw

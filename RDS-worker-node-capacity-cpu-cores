@@ -1,0 +1,8 @@
+apiVersion: metering.openshift.io/v1
+kind: ReportDataSource
+metadata:
+  name: worker-node-capacity-cpu-cores
+spec:
+  prometheusMetricsImporter:
+    query: |
+      kube_node_status_capacity_cpu_cores * on(node) group_left(role) kube_node_role{role="worker"}

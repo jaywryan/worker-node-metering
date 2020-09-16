@@ -1,0 +1,33 @@
+apiVersion: metering.openshift.io/v1
+kind: ReportQuery
+metadata:
+  name: cluster-worker-cpu-capacity-raw
+  namespace: openshift-metering
+spec:
+  columns:
+    - name: timestamp
+      type: timestamp
+      unit: date
+    - name: dt
+      type: varchar
+    - name: cpu_cores
+      type: double
+    - name: cpu_core_seconds
+      type: double
+    - name: node_count
+      type: double
+  inputs:
+    - default: worker-node-cpu-capacity-raw
+      name: WorkerNodeCpuCapacityRawDataSourceName
+      type: ReportDataSource
+  query: >
+    SELECT
+      "timestamp",
+      dt,
+      sum(node_capacity_cpu_cores) as cpu_cores,
+      sum(node_capacity_cpu_core_seconds) as cpu_core_seconds,
+      count(*) AS node_count
+    FROM {| dataSourceTableName .Report.Inputs.WorkerNodeCpuCapacityRawDataSourceName
+    |}
+
+    GROUP BY "timestamp", dt

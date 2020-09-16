@@ -1,0 +1,8 @@
+apiVersion: metering.openshift.io/v1
+kind: ReportDataSource
+metadata:
+  name: worker-node-cpu-capacity-raw
+  namespace: openshift-metering
+spec:
+  reportQueryView:
+    queryName: worker-node-cpu-capacity-raw

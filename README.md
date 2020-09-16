@@ -14,7 +14,7 @@ The cluster-cpu-capacity report averages the number of CPUs between the last sch
 
 These CRD's assume the Metering operator is installed on an OpenShift cluster. For help with that, see the operator-setup folder.
 
-The sample Report is `R-jay-test-cluster-worker-cpu-capacity.yml` - this report is currently configured to run hourly, during minute 36. It can be tailored to run on whatever schedule makes sense.
+The sample Report is `R-test-cluster-worker-cpu-capacity.yml` - this report is currently configured to run hourly, during minute 36. It can be tailored to run on whatever schedule makes sense.
 
 In general:
 * Report CRDs are prefixed with R.

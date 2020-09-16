@@ -41,4 +41,4 @@ REPORTNAME=test-cluster-worker-cpu-capacity
 curl -H "Authorization: Bearer $TOKEN" -k "https://$METERING_ROUTE_HOSTNAME/api/v1/reports/get?name=$REPORTNAME&namespace=$METERING_NAMESPACE&format=csv"
 ```
 # Sample output
-![Sample output](/images/reportOutput.png)
+![Sample output](images/sampleOutput.png)

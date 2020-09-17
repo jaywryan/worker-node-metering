@@ -12,7 +12,14 @@ The cluster-cpu-capacity report averages the number of CPUs between the last sch
 
 # Configuration
 
-The sample Report is `R-jay-test-cluster-worker-cpu-capacity.yml` You will want to customize this for your specific environment
+These CRD's assume the Metering operator is installed on an OpenShift cluster. For help with that, see the operator-setup folder.
+
+The sample Report is `R-test-cluster-worker-cpu-capacity.yml` - this report is currently configured to run hourly, during minute 36. It can be tailored to run on whatever schedule makes sense.
+
+In general:
+* Report CRDs are prefixed with R.
+* ReportDataSource CRDs are prefixed with RDS.
+* ReportQuery CRDs are prefixed with RQ.
 
 # Installation
 
@@ -26,12 +33,12 @@ The sample Report is `R-jay-test-cluster-worker-cpu-capacity.yml` You will want 
 
 The reports are exposed via the API endpoint of the metering operator.
 ``` shell
-METERING_ROUTE_HOSTNAME=$(oc -n $METERING_NAMESPACE get routes metering -o json | jq -r '.status.ingress[].host')
+METERING_ROUTE_HOSTNAME="$(oc -n $METERING_NAMESPACE get routes metering -o jsonpath='{.spec.host}')"
 
-TOKEN=$(oc -n $METERING_NAMESPACE serviceaccounts get-token reporting-operator)
+TOKEN="$(oc -n $METERING_NAMESPACE serviceaccounts get-token reporting-operator)"
 
-REPORTNAME=jay-test-cluster-worker-cpu-capacity
+REPORTNAME=test-cluster-worker-cpu-capacity
 curl -H "Authorization: Bearer $TOKEN" -k "https://$METERING_ROUTE_HOSTNAME/api/v1/reports/get?name=$REPORTNAME&namespace=$METERING_NAMESPACE&format=csv"
 ```
-
-
+# Sample output
+![Sample output](images/sampleOutput.png)

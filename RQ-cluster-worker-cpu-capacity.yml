@@ -2,7 +2,6 @@ apiVersion: metering.openshift.io/v1
 kind: ReportQuery
 metadata:
   name: cluster-worker-cpu-capacity
-  namespace: openshift-metering
 spec:
   columns:
     - name: period_start
